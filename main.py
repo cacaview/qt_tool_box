@@ -1,10 +1,14 @@
 import os
+from PyQt5 import QtCore, QtGui, QtWidgets
 import sys
-
+from PyQt5.QtWebEngineWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
+from PyQt5.QtCore import *
 from GUI import *
 from web import *
+import shutil
+import wget
 
 class myMainWindow(Ui_mainWindow,QMainWindow):
     def __init__(self):
@@ -24,6 +28,7 @@ class myMainWindow(Ui_mainWindow,QMainWindow):
         self.pushButton_12.clicked.connect(self.conn12)
         self.pushButton_13.clicked.connect(self.conn13)
         self.pushButton_14.clicked.connect(self.conn14)
+        self.pushButton_15.clicked.connect(self.conn15)
 
     def conn(self):     #短视频
         f = open("./lib/theurl.txt", "w")
@@ -75,7 +80,7 @@ class myMainWindow(Ui_mainWindow,QMainWindow):
         main_demo.show()
 
     def conn8(self):
-        os.system("start runvideo.bat")
+        os.system("pythonw  .//lib//video//py_player_demo2.py")
 
     def conn9(self):
         f = open("./lib/theurl.txt", "w")
@@ -99,7 +104,8 @@ class myMainWindow(Ui_mainWindow,QMainWindow):
         main_demo.show()
 
     def conn12(self):
-        os.system("start runcat.bat")
+        os.system("pythonw .\lib\http_cat\main.py")
+
 
     def conn13(self):
         f = open("./lib/theurl.txt", "w")
@@ -114,6 +120,9 @@ class myMainWindow(Ui_mainWindow,QMainWindow):
         f.close()
         main_demo = MainDemo()
         main_demo.show()
+
+    def conn15(self):
+        os.system("pythonw .//lib//talk//main.py")
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
