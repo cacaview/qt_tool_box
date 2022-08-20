@@ -82,7 +82,7 @@ class MainWindow(Ui_mainWindow,QMainWindow):
         main_demo.show()
 
     def conn8(self):
-        os.system("pythonw .//lib//video//py_player_demo2.py")
+        os.system(".\\lib\\video\\py_player_demo2.exe")
 
     def conn9(self):
         f = open("./lib/theurl.txt", "w")
@@ -106,7 +106,7 @@ class MainWindow(Ui_mainWindow,QMainWindow):
         main_demo.show()
 
     def conn12(self):
-        os.system("pythonw .\\lib\\http_cat\\main.py")
+        os.system(".\\lib\\http_cat\\main.exe")
 
 
     def conn13(self):
@@ -124,7 +124,7 @@ class MainWindow(Ui_mainWindow,QMainWindow):
         main_demo.show()
 
     def conn15(self):
-        os.system("pythonw .\\lib\\talk\\main.py")
+        os.system(".\\lib\\talk\\main.exe")
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
