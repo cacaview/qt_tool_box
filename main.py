@@ -5,12 +5,14 @@ from PyQt5.QtWebEngineWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
-from GUI import *
-from web import *
 import shutil
 import wget
+from GUI import *
+from web import *
 
-class myMainWindow(Ui_mainWindow,QMainWindow):
+
+
+class MainWindow(Ui_mainWindow,QMainWindow):
     def __init__(self):
         super(Ui_mainWindow,self).__init__()
         self.setupUi(self)
@@ -80,7 +82,7 @@ class myMainWindow(Ui_mainWindow,QMainWindow):
         main_demo.show()
 
     def conn8(self):
-        os.system("pythonw  .//lib//video//py_player_demo2.py")
+        os.system("pythonw .//lib//video//py_player_demo2.py")
 
     def conn9(self):
         f = open("./lib/theurl.txt", "w")
@@ -104,7 +106,7 @@ class myMainWindow(Ui_mainWindow,QMainWindow):
         main_demo.show()
 
     def conn12(self):
-        os.system("pythonw .\lib\http_cat\main.py")
+        os.system("pythonw .\\lib\\http_cat\\main.py")
 
 
     def conn13(self):
@@ -122,11 +124,12 @@ class myMainWindow(Ui_mainWindow,QMainWindow):
         main_demo.show()
 
     def conn15(self):
-        os.system("pythonw .//lib//talk//main.py")
+        os.system("pythonw .\\lib\\talk\\main.py")
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    maingui = myMainWindow()       #主窗口
+    maingui = MainWindow()       #主窗口
     maingui.show()
+
 
     sys.exit(app.exec_())

@@ -40,6 +40,6 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "聊天机器人"))
         self.label.setText(_translate("MainWindow", "输入信息："))
         self.pushButton.setText(_translate("MainWindow", "发送"))
