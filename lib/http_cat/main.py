@@ -114,7 +114,9 @@ class myMainWindow(Ui_MainWindow,Ui_Window,Ui_set,QMainWindow):
         print("\n你选择要保存的文件为:")
         print(fileName_choose)
         print("文件筛选器类型: ", filetype)
-        shutil.copyfile('./lib/http_cat/lib/jpg/1.jpg',fileName_choose)
+        test1 = self.lineEdit.text()
+        name = test1 + ".jpg"
+        shutil.copyfile(name,fileName_choose)
         print("copy done!")
 
 

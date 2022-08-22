@@ -76,6 +76,9 @@ class Ui_mainWindow(object):
         self.pushButton_15 = QtWidgets.QPushButton(self.tab_5)
         self.pushButton_15.setGeometry(QtCore.QRect(180, 50, 111, 51))
         self.pushButton_15.setObjectName("pushButton_15")
+        self.pushButton_16 = QtWidgets.QPushButton(self.tab_5)
+        self.pushButton_16.setGeometry(QtCore.QRect(340, 50, 111, 51))
+        self.pushButton_16.setObjectName("pushButton_16")
         self.tabWidget.addTab(self.tab_5, "")
         self.tab_6 = QtWidgets.QWidget()
         self.tab_6.setObjectName("tab_6")
@@ -89,7 +92,7 @@ class Ui_mainWindow(object):
         mainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(mainWindow)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(4)
         QtCore.QMetaObject.connectSlotsByName(mainWindow)
 
     def retranslateUi(self, mainWindow):
@@ -113,6 +116,7 @@ class Ui_mainWindow(object):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_4), _translate("mainWindow", "游戏"))
         self.pushButton_12.setText(_translate("mainWindow", "httpcat"))
         self.pushButton_15.setText(_translate("mainWindow", "在线聊天机器人"))
+        self.pushButton_16.setText(_translate("mainWindow", "友情终结器"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_5), _translate("mainWindow", "其他工具"))
         self.pushButton_13.setText(_translate("mainWindow", "开发者速查"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_6), _translate("mainWindow", "开发工具"))

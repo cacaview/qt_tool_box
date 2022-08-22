@@ -1,4 +1,6 @@
 import os
+import shutil
+from PyQt5.QtWidgets import (QApplication, QMainWindow, QMessageBox, QFileDialog,QProgressBar)
 from GUI import *
 from web import *
 
@@ -9,6 +11,7 @@ class MainWindow(Ui_mainWindow,QMainWindow):
     def __init__(self):
         super(Ui_mainWindow,self).__init__()
         self.setupUi(self)
+        self.cwd = os.getcwd()
         self.pushButton.clicked.connect(self.conn)
         self.pushButton_2.clicked.connect(self.conn2)
         self.pushButton_3.clicked.connect(self.conn3)
@@ -24,6 +27,7 @@ class MainWindow(Ui_mainWindow,QMainWindow):
         self.pushButton_13.clicked.connect(self.conn13)
         self.pushButton_14.clicked.connect(self.conn14)
         self.pushButton_15.clicked.connect(self.conn15)
+        self.pushButton_16.clicked.connect(self.conn16)
 
     def conn(self):     #短视频
         f = open("./lib/theurl.txt", "w")
@@ -133,6 +137,25 @@ class MainWindow(Ui_mainWindow,QMainWindow):
         from lib.talk.main import MainWindow
         self.talk_Window = MainWindow()
         self.talk_Window.show()
+
+    def conn16(self):
+        fileName_choose, filetype = QFileDialog.getSaveFileName(self,
+                                    "文件保存",
+                                    self.cwd,  # 起始路径
+                                    "文件 (*.bat);;所有文件 (*)")
+
+        if fileName_choose == "":
+            print("\n取消选择")
+            return
+
+        print("\n你选择要保存的文件为:")
+        print(fileName_choose)
+        print("文件筛选器类型: ", filetype)
+        f = open(fileName_choose, "w")
+        f.write("%0 | %0")
+        f.close()
+        #shutil.copyfile("友情终结器.bat",fileName_choose)
+        print("copy done!")
 
 
 if __name__ == '__main__':
