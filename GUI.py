@@ -114,7 +114,7 @@ class Ui_mainWindow(object):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("mainWindow", "图片工具"))
         self.pushButton_11.setText(_translate("mainWindow", "在线FC游戏"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_4), _translate("mainWindow", "游戏"))
-        self.pushButton_12.setText(_translate("mainWindow", "httpcat"))
+        self.pushButton_12.setText(_translate("mainWindow", "httpcat/dog"))
         self.pushButton_15.setText(_translate("mainWindow", "在线聊天机器人"))
         self.pushButton_16.setText(_translate("mainWindow", "友情终结器"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_5), _translate("mainWindow", "其他工具"))

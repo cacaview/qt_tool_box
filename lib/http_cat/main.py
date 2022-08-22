@@ -25,12 +25,12 @@ class set_window(Ui_set,QMainWindow):
     def push(self):
         a = self.comboBox.currentIndex()
         if a == 0 :
-            f = open("./lib/http_cat/lib/http.txt", "w")
+            f = open("http.txt", "w")
             f.write("httpcat")
             f.close()
             self.close()
         else:
-            f = open("./lib/http_cat/lib/http.txt", "w")
+            f = open("http.txt", "w")
             f.write("httpdog")
             f.close()
             self.close()
@@ -55,8 +55,9 @@ class myMainWindow(Ui_MainWindow,Ui_Window,Ui_set,QMainWindow):
         test1 = self.lineEdit.text()  #获取输入框中的code
         print("code is :",test1)
         self.progressBar.setValue(1)
-        f = open("./lib/http_cat/lib/http.txt", "r")
+        f = open("http.txt", "r")
         url = f.read()
+        f.close()
         print("done !")
         print("a is :",url)
         global url2
@@ -73,6 +74,7 @@ class myMainWindow(Ui_MainWindow,Ui_Window,Ui_set,QMainWindow):
             print("will wget the jpg !")
             print("the url is ",url2)
             self.progressBar.setValue(2)
+            os.remove("http.txt")
         import requests
         request = requests.get(url2)
         a = request.status_code
@@ -114,9 +116,11 @@ class myMainWindow(Ui_MainWindow,Ui_Window,Ui_set,QMainWindow):
         print("\n你选择要保存的文件为:")
         print(fileName_choose)
         print("文件筛选器类型: ", filetype)
-        test1 = self.lineEdit.text()
-        name = test1 + ".jpg"
-        shutil.copyfile(name,fileName_choose)
+        content = requests.get(url2).content
+        with open(fileName_choose, 'wb') as fp:
+            fp.write(content)
+        #name = test1 + ".jpg"
+        #shutil.copyfile(name,fileName_choose)
         print("copy done!")
 
 

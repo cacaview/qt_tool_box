@@ -38,9 +38,7 @@ class MainWindow(Ui_MainWindow,QMainWindow):
 
 
     def closeEvent(self, event):
-        f = open("talk.txt", "w")
-        f.write("")
-        f.close()
+        os.remove("talk.txt")
 
 
 if __name__ == '__main__':
