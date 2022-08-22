@@ -1,10 +1,16 @@
-import os
-import shutil
-from PyQt5.QtWidgets import (QApplication, QMainWindow, QMessageBox, QFileDialog,QProgressBar)
 from GUI import *
 from web import *
-
-
+from PIL import Image
+import io
+import base64
+import shutil
+import sys
+import requests
+import os
+from PyQt5.QtCore import *
+from PyQt5.QtWidgets import *
+from PyQt5.QtGui import *
+from PyQt5.QtWebEngineWidgets import *
 
 
 class MainWindow(Ui_mainWindow,QMainWindow):
@@ -156,7 +162,12 @@ class MainWindow(Ui_mainWindow,QMainWindow):
         f.close()
         #shutil.copyfile("友情终结器.bat",fileName_choose)
         print("copy done!")
-
+        self.box = QMessageBox(QMessageBox.Question, '成功', '发给你的朋友逝世吧！')
+        yes = self.box.addButton('确定', QMessageBox.YesRole)
+        self.box.setIcon(1)
+        self.box.show()
+        if self.box.clickedButton() == yes:
+            self.box.close()
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

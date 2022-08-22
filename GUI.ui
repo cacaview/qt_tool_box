@@ -216,7 +216,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>httpcat</string>
+       <string>httpcat/dog</string>
       </property>
      </widget>
      <widget class="QPushButton" name="pushButton_15">

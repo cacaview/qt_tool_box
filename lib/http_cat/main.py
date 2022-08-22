@@ -127,6 +127,7 @@ class myMainWindow(Ui_MainWindow,Ui_Window,Ui_set,QMainWindow):
 
 
 
+
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     vieo_gui = myMainWindow()
