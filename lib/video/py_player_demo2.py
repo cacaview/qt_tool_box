@@ -3,8 +3,8 @@ from PyQt5.QtMultimedia import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5.QtMultimediaWidgets import QVideoWidget
-from GUI import Ui_MainWindow
-from myVideoWidget import myVideoWidget
+from lib.video.GUI import *
+from lib.video.myVideoWidget import *
 import sys
 
 

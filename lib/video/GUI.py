@@ -98,5 +98,5 @@ class Ui_MainWindow(object):
         self.lab_audio.setText(_translate("MainWindow", "volume:100%"))
         self.btn_cast.setText(_translate("MainWindow", "截图"))
 
-from myVideoWidget import myVideoWidget
-from myvideoslider import myVideoSlider
+from lib.video.myVideoWidget import myVideoWidget
+from lib.video.myvideoslider import myVideoSlider

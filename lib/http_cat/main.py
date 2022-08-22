@@ -1,14 +1,16 @@
+from PIL import Image
+import io
+import base64
 import shutil
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import (QApplication, QMainWindow, QMessageBox, QFileDialog,QProgressBar)
 import sys
-import wget
-from GUI_set import *
-from GUI import *
+import requests
+from lib.http_cat.GUI_set import *
+from lib.http_cat.GUI import *
 import os
-from GUI_about import *
+from lib.http_cat.GUI_about import *
 
-url2 = 200
 class about_window(Ui_Window,QMainWindow):
     def __init__(self):
         super(about_window, self).__init__()
@@ -16,9 +18,6 @@ class about_window(Ui_Window,QMainWindow):
         self.pushButton.clicked.connect(self.close)
 
 class set_window(Ui_set,QMainWindow):
-
-
-
     def __init__(self):
         super(set_window, self).__init__()
         self.setupUi(self)
@@ -29,15 +28,14 @@ class set_window(Ui_set,QMainWindow):
             f = open("./lib/http_cat/lib/http.txt", "w")
             f.write("httpcat")
             f.close()
-            set_1.close()
+            self.close()
         else:
             f = open("./lib/http_cat/lib/http.txt", "w")
             f.write("httpdog")
             f.close()
-            set_1.close()
-
-
-class myMainWindow(Ui_MainWindow,QMainWindow):
+            self.close()
+global url2
+class myMainWindow(Ui_MainWindow,Ui_Window,Ui_set,QMainWindow):
     def __init__(self):
         super(Ui_MainWindow,self).__init__()
         self.setupUi(self)
@@ -50,45 +48,42 @@ class myMainWindow(Ui_MainWindow,QMainWindow):
         self.pushButton.clicked.connect(self.get)
         self.action1.triggered.connect(self.action_save)
         self.action2.triggered.connect(self.action_to)
-        #self.action3.triggered.connect(self.action_new)
+
 
     def get(self):
         print("you push the button !")
-        test1 = self.lineEdit.text()    #获取输入框中的code
+        test1 = self.lineEdit.text()  #获取输入框中的code
         print("code is :",test1)
         self.progressBar.setValue(1)
         f = open("./lib/http_cat/lib/http.txt", "r")
         url = f.read()
         print("done !")
-
         print("a is :",url)
+        global url2
         if url == ("httpcat") :
             url = ("https://http.cat/")
-            url2: str = url + test1
+            url2 = url + test1
             print("will wget the jpg !")
             print("the url is ",url2)
             self.progressBar.setValue(2)
         else:
             url = ("https://http.dog/")
             text2 = ".jpg"
-            url2: str = url + test1 + text2
+            url2 = url + test1 + text2
             print("will wget the jpg !")
             print("the url is ",url2)
             self.progressBar.setValue(2)
         import requests
-        requests = requests.get(url2)
-        a = requests.status_code
+        request = requests.get(url2)
+        a = request.status_code
         if a == 200:
-            if os.path.exists("./lib/http_cat/lib/jpg/1.jpg"):
-                os.remove("./lib/http_cat/lib/jpg/1.jpg")
-                print("remove the file")
-                self.progressBar.setValue(3)
-            else:
-                print("The file does not exist")
-                self.progressBar.setValue(3)
-            wget.download(url2,"./lib/http_cat/lib/jpg/1.jpg")
+            self.progressBar.setValue(3)
+            #wget.download(url2,"./lib/http_cat/lib/jpg/1.jpg")
             print("done !")             #获取图片
-            self.label_3.setPixmap(QPixmap("./lib/http_cat/lib/jpg/1.jpg"))
+            content = requests.get(url2).content
+            picture = QtGui.QImage.fromData(content)
+            pixmap = QtGui.QPixmap.fromImage(picture)
+            self.label_3.setPixmap(QPixmap(pixmap))
             self.label_3.setScaledContents(True)
             print("show the image done!")#显示图片
             self.progressBar.setValue(4)
@@ -100,16 +95,12 @@ class myMainWindow(Ui_MainWindow,QMainWindow):
 
     def action_save(self,):
         print("will save the jpg!")
-        if os.path.exists("./lib/http_cat/lib/jpg/1.jpg"):
-            shutil.copyfile('./lib/http_cat/lib/jpg/1.jpg', './lib/http_cat/download/1.jpg')
-            #wget.download(url2, "./download/1.jpg")
-            print("copy done!")
-            reply = QMessageBox.information(self, "成功", "已保存到本程序路径下的download目录",QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
-            print(reply)
-        else:
-            print("The file does not exist")
-            reply = QMessageBox.warning(self, "警告", "找不到文件，尝试再次get图片", QMessageBox.Yes | QMessageBox.No,QMessageBox.Yes)
-            print(reply)
+        content = requests.get(url2).content
+        test1 = self.lineEdit.text()
+        name = test1 + ".jpg"
+        with open(name, 'wb') as fp:
+            fp.write(content)
+        print("done!")
     def action_to(self):
         fileName_choose, filetype = QFileDialog.getSaveFileName(self,
                                     "文件保存",
@@ -126,8 +117,8 @@ class myMainWindow(Ui_MainWindow,QMainWindow):
         shutil.copyfile('./lib/http_cat/lib/jpg/1.jpg',fileName_choose)
         print("copy done!")
 
-    #def action_new(self):
-        #os.system("start .\main.py")
+
+
 
 
 if __name__ == '__main__':
@@ -136,11 +127,11 @@ if __name__ == '__main__':
     vieo_gui.show()     #主窗口
 
     child = about_window()
-    btn=vieo_gui.action4
+    btn = vieo_gui.action4
     btn.triggered.connect(child.show)       #关于窗口
 
     set_1 = set_window()
-    set=vieo_gui.action5
+    set = vieo_gui.action5
     set.triggered.connect(set_1.show)#设置窗口
 
 

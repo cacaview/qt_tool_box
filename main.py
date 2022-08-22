@@ -1,14 +1,7 @@
 import os
-from PyQt5 import QtCore, QtGui, QtWidgets
-import sys
-from PyQt5.QtWebEngineWidgets import *
-from PyQt5.QtGui import *
-from PyQt5.QtWidgets import *
-from PyQt5.QtCore import *
-import shutil
-import wget
 from GUI import *
 from web import *
+
 
 
 
@@ -82,7 +75,9 @@ class MainWindow(Ui_mainWindow,QMainWindow):
         main_demo.show()
 
     def conn8(self):
-        os.system(".\\lib\\video\\py_player_demo2.exe")
+        from lib.video.py_player_demo2 import myMainWindow
+        self.vieo_gui = myMainWindow()
+        self.vieo_gui.show()
 
     def conn9(self):
         f = open("./lib/theurl.txt", "w")
@@ -105,8 +100,19 @@ class MainWindow(Ui_mainWindow,QMainWindow):
         main_demo = MainDemo()
         main_demo.show()
 
-    def conn12(self):
-        os.system(".\\lib\\http_cat\\main.exe")
+    def conn12(self, ):
+        from lib.http_cat.main import myMainWindow,about_window,set_window
+        self.vieo_gui = myMainWindow()
+        self.vieo_gui.show()
+        global url2
+        self.child = about_window()
+        self.btn = self.vieo_gui.action4
+        self.btn.triggered.connect(self.child.show)
+
+        self.set_1 = set_window()
+        self.set = self.vieo_gui.action5
+        self.set.triggered.connect(self.set_1.show)
+
 
 
     def conn13(self):
@@ -124,7 +130,10 @@ class MainWindow(Ui_mainWindow,QMainWindow):
         main_demo.show()
 
     def conn15(self):
-        os.system(".\\lib\\talk\\main.exe")
+        from lib.talk.main import MainWindow
+        self.talk_Window = MainWindow()
+        self.talk_Window.show()
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

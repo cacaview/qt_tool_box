@@ -5,7 +5,7 @@ import requests
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QTextBrowser, QVBoxLayout, QHBoxLayout, QMessageBox, \
     QMainWindow
 from PyQt5.QtGui import QIcon
-from GUI import *
+from lib.talk.GUI import *
 
 
 class MainWindow(Ui_MainWindow,QMainWindow):
