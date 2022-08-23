@@ -5,8 +5,9 @@ import requests
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QTextBrowser, QVBoxLayout, QHBoxLayout, QMessageBox, \
     QMainWindow
 from PyQt5.QtGui import QIcon
-from lib.talk.GUI import *
+from self import self
 
+from lib.talk.GUI import *
 
 class MainWindow(Ui_MainWindow,QMainWindow):
     def __init__(self):
@@ -16,18 +17,18 @@ class MainWindow(Ui_MainWindow,QMainWindow):
 
 
     def talk(self):
-        str = self.lineEdit.text()
-        self.lineEdit.clear()
-        b = requests.get("http://api.qingyunke.com/api.php?key=free&appid=0&msg=" + str)
+        self.str = self.lineEdit.text()
+        self.lineEdit.setText("")
+        b = requests.get("http://api.qingyunke.com/api.php?key=free&appid=0&msg=" + self.str)
         c = b.text
         str1 = c[23:]
         mylen = len(str1)
         thelen = mylen - 2
         str2 = str1[:thelen]
-        print(str2)
         f = open("talk.txt", "a")
-        str3 = "你：" + str + "\n"
+        str3 = "你：" + self.str + "\n"
         str4 = "机器人：" + str2 + "\n"
+        self.textBrowser.setText(str3)
         f.write(str3)
         f.write(str4)
         f.close()
